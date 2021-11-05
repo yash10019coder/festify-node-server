@@ -1,31 +1,19 @@
-const express = require('express');
+const express = require("express");
+const mongoose = require("mongoose");
+const get = require("./routes/get");
+const post = require("./routes/posts");
+require("dotenv/config");
+
 const app = express();
-const mongoose = require('mongoose');
 const port = 3000;
-const ip = '127.0.0.1';
 
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
-
-var eventSchema = mongoose.Schema({
-    eventName: { type: String, default: 'equinox' },
-    eventDate: { type: String, default: '19 Dec' },
-    eventTime: { type: String, default: '12:30 PM' },
-    eventLocation: { type: String, default: 'Lucknow' },
-    eventDescription: { type: String, default: 'kldjf alskdfj lkasd jflksadflk aldksjflkdsjlfksdj' },
-    eventImage: { type: String, default: 'kkkkk' }
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true }, () => {
+  console.log("Connected to MongoDB");
 });
 
-app.get('/', (req, res) => {
-    console.log(req.url);
-    console.log(req.headers);
-    res.send("hello world!");
-})
+app.use(get);
+app.use(post);
 
-app.post('/post', (req, res) => {
-    res.send("post");
-    var data = eventSchema({eventName: 'codeforces div 3',eventData: '19 Dec',eventTime: '12:30 PM',eventLocation: 'Lucknow',eventDescription: 'kldjf alskdfj lkasd jflksadflk aldksjflkdsjlfksdj',eventImage: 'kkkkk'});
-    var eventSchema = mongoose.model('Event', eventSchema);
-})
-app.listen(port, ip, () => {
-    console.log(`Server running at http://${ip}:${port}/`);
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
