@@ -11,7 +11,7 @@ var eventSchema = mongoose.Schema({
   },
   eventTime: {
     type: String,
-    default: "12:30 PM",
+    default: Date.now(),
   },
   eventLocation: {
     type: String,
