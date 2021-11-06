@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const get = require("./routes/get");
 const post = require("./routes/posts");
 require("dotenv/config");
@@ -13,9 +14,10 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true }, () => {
 });
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(get);
 app.use(post);
 
-app.listen(process.env.PORT || 3000 , () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

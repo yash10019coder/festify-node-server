@@ -4,6 +4,8 @@ var express = require("express");
 
 var mongoose = require("mongoose");
 
+var cors = require("cors");
+
 var get = require("./routes/get");
 
 var post = require("./routes/posts");
@@ -20,6 +22,7 @@ mongoose.connect(process.env.DB_URL, {
   console.log("Connected to MongoDB");
 });
 app.use(bodyParser.json());
+app.use(cors());
 app.use(get);
 app.use(post);
 app.listen(process.env.PORT || 3000, function () {
