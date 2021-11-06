@@ -21,7 +21,7 @@ router.post("/post", (req, res) => {
     } else {
       console.log(`succesfully created the db ${event}`);
       // res.send(`succesfully created the db ${data} \n your body is ${req.body}`)
-        res.json({ status:1,data:data});
+      res.json({ data: data, status: 1});
     }
   });
 });

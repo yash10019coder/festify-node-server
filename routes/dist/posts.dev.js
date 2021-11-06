@@ -28,8 +28,8 @@ router.post("/post", function (req, res) {
       console.log("succesfully created the db ".concat(event)); // res.send(`succesfully created the db ${data} \n your body is ${req.body}`)
 
       res.json({
-        status: 1,
-        data: data
+        data: data,
+        status: 1
       });
     }
   });

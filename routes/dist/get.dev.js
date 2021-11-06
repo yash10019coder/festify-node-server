@@ -20,8 +20,8 @@ router.get("/get_events", function (req, res) {
       });
     } else {
       res.json({
-        status: 1,
-        data: events
+        data: events,
+        status: 1
       });
     }
   });
