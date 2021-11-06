@@ -10,6 +10,8 @@ var post = require("./routes/posts");
 
 require("dotenv/config");
 
+var bodyParser = require("body-parser");
+
 var app = express();
 var port = 3000;
 mongoose.connect(process.env.DB_URL, {
@@ -17,6 +19,7 @@ mongoose.connect(process.env.DB_URL, {
 }, function () {
   console.log("Connected to MongoDB");
 });
+app.use(bodyParser.json());
 app.use(get);
 app.use(post);
 app.listen(port, function () {
