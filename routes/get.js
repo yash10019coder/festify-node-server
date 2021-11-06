@@ -6,7 +6,6 @@ router.get("/", (req, res) => {
   console.log(req.url);
   console.log(req.headers);
   console.log(req.body);
-  res.sendFile(path.join(__dirname, "../index.html"));
 
 });
 

@@ -10,7 +10,6 @@ router.get("/", function (req, res) {
   console.log(req.url);
   console.log(req.headers);
   console.log(req.body);
-  res.sendFile(path.join(__dirname, "../index.html"));
 });
 router.get("/get_events", function (req, res) {
   event.find({}, function (err, events) {
