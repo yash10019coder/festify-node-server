@@ -22,6 +22,6 @@ mongoose.connect(process.env.DB_URL, {
 app.use(bodyParser.json());
 app.use(get);
 app.use(post);
-app.listen(port, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("Server running at http://localhost:".concat(port));
 });

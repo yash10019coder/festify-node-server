@@ -16,6 +16,6 @@ app.use(bodyParser.json());
 app.use(get);
 app.use(post);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3000 , () => {
   console.log(`Server running at http://localhost:${port}`);
 });
