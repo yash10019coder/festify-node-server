@@ -10,6 +10,8 @@ router.get("/", function (req, res) {
   console.log(req.url);
   console.log(req.headers);
   console.log(req.body);
+  console.log(req.ip);
+  res.send(req.headers, req.data, req.ip, req.router, req.body);
 });
 router.get("/get_events", function (req, res) {
   event.find({}, function (err, events) {
