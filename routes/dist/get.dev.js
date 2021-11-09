@@ -11,7 +11,7 @@ router.get("/", function (req, res) {
   console.log(req.headers);
   console.log(req.body);
   console.log(req.ip);
-  res.send(req.headers + "\n" + req.data + "\n" + req.ip + "\n" + req.router + "\n" + req.body);
+  res.send(req.headers, req.data, req.ip, req.router, req.body);
 });
 router.get("/get_events", function (req, res) {
   event.find({}, function (err, events) {
