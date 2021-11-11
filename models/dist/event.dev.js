@@ -5,27 +5,27 @@ var mongoose = require("mongoose");
 var eventSchema = mongoose.Schema({
   eventName: {
     type: String,
-    "default": "equinox"
+    required: true
   },
   eventDate: {
     type: String,
-    "default": "19 Dec"
+    required: true
   },
   eventTime: {
     type: String,
-    "default": Date.now()
+    required: true
   },
   eventLocation: {
     type: String,
-    "default": "Lucknow"
+    required: true
   },
   eventDescription: {
     type: String,
-    "default": "kldjf alskdfj lkasd jflksadflk aldksjflkdsjlfksdj"
+    required: true
   },
   eventImage: {
     type: String,
-    "default": "kkkkk"
+    required: true
   }
 });
 module.exports = mongoose.model("Event", eventSchema);
