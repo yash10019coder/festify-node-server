@@ -19,7 +19,7 @@ require("dotenv/config");
 var bodyParser = require("body-parser");
 
 var app = express();
-var port = 80;
+var port = 8080;
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true
 }, function () {

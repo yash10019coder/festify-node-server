@@ -11,7 +11,7 @@ require("dotenv/config");
 const bodyParser = require("body-parser");
 
 const app = express();
-const port = 80;
+const port = 8080;
 
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true }, () => {
   console.log("Connected to MongoDB");
