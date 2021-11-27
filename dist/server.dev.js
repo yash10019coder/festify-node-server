@@ -6,9 +6,7 @@ var mongoose = require("mongoose");
 
 var cors = require("cors");
 
-var get = require("./routes/get");
-
-var post = require("./routes/posts");
+var event = require("./routes/event");
 
 var user = require("./routes/user");
 
@@ -33,8 +31,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cors());
-app.use(get);
-app.use(post);
+app.use(event);
 app.use('/user', user);
 app.listen(process.env.PORT || port, function () {
   console.log("Server running at http://".concat(ip.address(), ":").concat(port));

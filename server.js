@@ -1,8 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const get = require("./routes/get");
-const post = require("./routes/posts");
+const event = require("./routes/event");
 const user = require("./routes/user");
 const ip = require("ip");
 
@@ -20,8 +19,7 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true }, () => {
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
-app.use(get);
-app.use(post);
+app.use(event);
 app.use('/user',user)
 
 app.listen(process.env.PORT || port, () => {
