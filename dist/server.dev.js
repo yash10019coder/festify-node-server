@@ -31,8 +31,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cors());
-app.use(event);
+app.use('/event', event);
 app.use('/user', user);
+app.get("/", function (req, res) {
+  console.log(req.url);
+  console.log(req.headers);
+  console.log(req.body);
+  console.log(req.ip);
+  res.send(req.headers, req.data, req.ip, req.router, req.body);
+});
 app.listen(process.env.PORT || port, function () {
   console.log("Server running at http://".concat(ip.address(), ":").concat(port));
 });

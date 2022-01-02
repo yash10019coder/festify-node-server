@@ -4,14 +4,6 @@ const event = require("../models/event");
 const bodyparser = require("body-parser");
 express().use(bodyparser.json())
 
-router.get("/", (req, res) => {
-    console.log(req.url);
-    console.log(req.headers);
-    console.log(req.body);
-    console.log(req.ip);
-    res.send(req.headers, req.data, req.ip, req.router, req.body);
-});
-
 router.get("/get_events", (req, res) => {
     event.find({}, (err, events) => {
         if (err) {
