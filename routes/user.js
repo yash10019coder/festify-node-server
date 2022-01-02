@@ -10,6 +10,9 @@ router.get("/:name", (req, res) => {
         res.status(400).json({ status: 0, error: err });
       }
       console.log(user);
+      if (user === null) {
+        res.status(404).json({ status: 0, error: "User not found" });
+      }
       res.status(200).json({ status: 1, data: user });
     });
   } catch (error) {
