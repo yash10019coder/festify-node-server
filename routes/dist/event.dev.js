@@ -9,7 +9,7 @@ var event = require("../models/event");
 var bodyparser = require("body-parser");
 
 express().use(bodyparser.json());
-router.get("/get_events", function (req, res) {
+router.get("/all", function (req, res) {
   event.find({}, function (err, events) {
     if (err) {
       console.log({

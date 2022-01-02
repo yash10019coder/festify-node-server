@@ -4,7 +4,7 @@ const event = require("../models/event");
 const bodyparser = require("body-parser");
 express().use(bodyparser.json())
 
-router.get("/get_events", (req, res) => {
+router.get("/all", (req, res) => {
     event.find({}, (err, events) => {
         if (err) {
             console.log({ status: 0, error: err });
