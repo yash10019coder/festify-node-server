@@ -26,12 +26,12 @@ router.get("/:name", function (req, res) {
           status: 0,
           error: "User not found"
         });
+      } else {
+        res.status(200).json({
+          status: 1,
+          data: user
+        });
       }
-
-      res.status(200).json({
-        status: 1,
-        data: user
-      });
     });
   } catch (error) {
     console.error(error);
