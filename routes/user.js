@@ -24,18 +24,17 @@ router.get("/:name", (req, res) => {
 
 router.post("/create", async (req, res) => {
   let a1, a2;
-  await User.find({ userEmail: req.body.userEmail }, (err, user) => {
+  a1 = await User.find({ userEmail: req.body.userEmail }, (err, user) => {
     if (err) {
       console.log(err);
+      res.status(400).json({ status: 0, error: err });
     }
-    else
-      a1 = user;
   });
-  await User.find({ userName: req.body.userName }, (err, user) => {
-    if (err)
+  a2 = await User.find({ userName: req.body.userName }, (err, user) => {
+    if (err) {
       console.log(err);
-    else
-      a2 = user;
+      res.status(400).json({ status: 0, error: err });
+    }
   });
 
   if (a1.size > 0) {

@@ -53,18 +53,31 @@ router.post("/create", function _callee(req, res) {
           }, function (err, user) {
             if (err) {
               console.log(err);
-            } else a1 = user;
+              res.status(400).json({
+                status: 0,
+                error: err
+              });
+            }
           }));
 
         case 2:
-          _context.next = 4;
+          a1 = _context.sent;
+          _context.next = 5;
           return regeneratorRuntime.awrap(User.find({
             userName: req.body.userName
           }, function (err, user) {
-            if (err) console.log(err);else a2 = user;
+            if (err) {
+              console.log(err);
+              res.status(400).json({
+                status: 0,
+                error: err
+              });
+            }
           }));
 
-        case 4:
+        case 5:
+          a2 = _context.sent;
+
           if (a1.size > 0) {
             res.status(400).json({
               status: 0,
@@ -93,7 +106,7 @@ router.post("/create", function _callee(req, res) {
             });
           }
 
-        case 5:
+        case 7:
         case "end":
           return _context.stop();
       }
