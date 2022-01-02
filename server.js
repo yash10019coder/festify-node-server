@@ -20,8 +20,10 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 app.use(event);
-app.use('/user',user)
+app.use('/user', user)
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Server running at http://${ip.address()}:${port}`);
 });
+
+module.exports = app;

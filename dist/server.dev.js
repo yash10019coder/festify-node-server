@@ -36,3 +36,4 @@ app.use('/user', user);
 app.listen(process.env.PORT || port, function () {
   console.log("Server running at http://".concat(ip.address(), ":").concat(port));
 });
+module.exports = app;

@@ -31,10 +31,32 @@ describe('Users', () => {
             chai.request(server)
                 .get('/user/yash')
                 .end((err, res) => {
+                    console.log(res.body);
                     res.should.have.status(200);
-                    res.body.should.be.a('object');
+                    res.body.should.be.a({
+                        status: 1,
+                        data: Object
+                    });
                     done();
                 });
         });
     });
+
+    // describe('/POST users', () => {
+    //     it('it should POST a user', (done) => {
+    //         let user = {
+    //             userName: 'yash',
+    //             userPassword: 'yash123',
+    //             userEmail: 'yash@gmail.com',
+    //             userPhoto: 'photo@gmail.com'
+    //         }
+    //         chai.request(server)
+    //             .post('/user/create')
+    //             .end((err, res) => {
+    //                 res.should.have.status(200);
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
+    // });
 });
