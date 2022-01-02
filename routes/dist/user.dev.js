@@ -47,43 +47,28 @@ router.post("/create", function _callee(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return regeneratorRuntime.awrap(User.find({
+          _context.prev = 0;
+          _context.next = 3;
+          return regeneratorRuntime.awrap(User.findOne({
             userEmail: req.body.userEmail
-          }, function (err, user) {
-            if (err) {
-              console.log(err);
-              res.status(400).json({
-                status: 0,
-                error: err
-              });
-            }
           }));
 
-        case 2:
+        case 3:
           a1 = _context.sent;
-          _context.next = 5;
-          return regeneratorRuntime.awrap(User.find({
+          _context.next = 6;
+          return regeneratorRuntime.awrap(User.findOne({
             userName: req.body.userName
-          }, function (err, user) {
-            if (err) {
-              console.log(err);
-              res.status(400).json({
-                status: 0,
-                error: err
-              });
-            }
           }));
 
-        case 5:
+        case 6:
           a2 = _context.sent;
 
-          if (a1.size > 0) {
+          if (a1 !== null) {
             res.status(400).json({
               status: 0,
               error: "User alredy exists please use a different email"
             });
-          } else if (a2.size > 0) {
+          } else if (a2 !== null) {
             res.status(400).json({
               status: 0,
               error: "User alredy exists please use a different username"
@@ -106,11 +91,23 @@ router.post("/create", function _callee(req, res) {
             });
           }
 
-        case 7:
+          _context.next = 14;
+          break;
+
+        case 10:
+          _context.prev = 10;
+          _context.t0 = _context["catch"](0);
+          console.error(_context.t0);
+          res.status(400).json({
+            status: 0,
+            error: _context.t0
+          });
+
+        case 14:
         case "end":
           return _context.stop();
       }
     }
-  });
+  }, null, null, [[0, 10]]);
 });
 module.exports = router;

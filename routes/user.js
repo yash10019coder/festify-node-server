@@ -23,39 +23,34 @@ router.get("/:name", (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  let a1, a2;
-  a1 = await User.find({ userEmail: req.body.userEmail }, (err, user) => {
-    if (err) {
-      console.log(err);
-      res.status(400).json({ status: 0, error: err });
-    }
-  });
-  a2 = await User.find({ userName: req.body.userName }, (err, user) => {
-    if (err) {
-      console.log(err);
-      res.status(400).json({ status: 0, error: err });
-    }
-  });
+  try {
+    let a1, a2;
+    a1 = await User.findOne({ userEmail: req.body.userEmail });
+    a2 = await User.findOne({ userName: req.body.userName });
 
-  if (a1.size > 0) {
-    res.status(400).json({
-      status: 0,
-      error: "User alredy exists please use a different email",
-    });
-  } else if (a2.size > 0) {
-    res.status(400).json({
-      status: 0,
-      error: "User alredy exists please use a different username",
-    });
-  } else {
-    User.create(req.body, (err, user) => {
-      if (err) {
-        console.error(err);
-        res.status(400).json({ status: 0, error: err });
-      }
-      console.log(user);
-      res.status(200).json({ status: 1, data: user });
-    });
+    if (a1 !== null) {
+      res.status(400).json({
+        status: 0,
+        error: "User alredy exists please use a different email",
+      });
+    } else if (a2 !== null) {
+      res.status(400).json({
+        status: 0,
+        error: "User alredy exists please use a different username",
+      });
+    } else {
+      User.create(req.body, (err, user) => {
+        if (err) {
+          console.error(err);
+          res.status(400).json({ status: 0, error: err });
+        }
+        console.log(user);
+        res.status(200).json({ status: 1, data: user });
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ status: 0, error: error });
   }
 });
 
