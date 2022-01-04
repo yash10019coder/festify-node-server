@@ -15,7 +15,7 @@ router.get("/:name", function (req, res) {
         console.error(err);
         res.status(400).json({
           status: 0,
-          error: err
+          message: err
         });
       }
 
@@ -24,7 +24,7 @@ router.get("/:name", function (req, res) {
       if (user === null) {
         res.status(404).json({
           status: 0,
-          error: "User not found"
+          message: "User not found"
         });
       } else {
         res.status(200).json({
@@ -37,7 +37,7 @@ router.get("/:name", function (req, res) {
     console.error(error);
     res.status(400).json({
       status: 0,
-      error: error
+      message: error
     });
   }
 });
@@ -66,12 +66,12 @@ router.post("/create", function _callee(req, res) {
           if (a1 !== null) {
             res.status(400).json({
               status: 0,
-              error: "User alredy exists please use a different email"
+              message: "User alredy exists please use a different email"
             });
           } else if (a2 !== null) {
             res.status(400).json({
               status: 0,
-              error: "User alredy exists please use a different username"
+              message: "User alredy exists please use a different username"
             });
           } else {
             User.create(req.body, function (err, user) {
@@ -79,14 +79,14 @@ router.post("/create", function _callee(req, res) {
                 console.error(err);
                 res.status(400).json({
                   status: 0,
-                  error: err
+                  message: err
                 });
               }
 
               console.log(user);
               res.status(200).json({
                 status: 1,
-                data: user
+                message: "user is succesfully created "
               });
             });
           }
@@ -100,7 +100,7 @@ router.post("/create", function _callee(req, res) {
           console.error(_context.t0);
           res.status(400).json({
             status: 0,
-            error: _context.t0
+            message: _context.t0
           });
 
         case 14:

@@ -7,8 +7,8 @@ express().use(bodyparser.json())
 router.get("/all", (req, res) => {
     event.find({}, (err, events) => {
         if (err) {
-            console.log({ status: 0, error: err });
-            res.json({ error: err, status: 0 });
+            console.log({ status: 0, message: err });
+            res.json({ message: err, status: 0 });
         } else {
             res.json({ data: events, status: 1 });
         }
@@ -28,7 +28,7 @@ router.post("/post", (req, res) => {
         if (err) {
             console.log(err);
             // res.send(`unable to create the ${data} due to the following error ${err}`);
-            res.json({ status: 0, error: err });
+            res.json({ status: 0, message: err });
         } else {
             console.log(`succesfully created the db ${event}`);
             // res.send(`succesfully created the db ${data} \n your body is ${req.body}`)

@@ -7,18 +7,18 @@ router.get("/:name", (req, res) => {
     User.findOne({ userName: req.params.name }, (err, user) => {
       if (err) {
         console.error(err);
-        res.status(400).json({ status: 0, error: err });
+        res.status(400).json({ status: 0, message: err });
       }
       console.log(user);
       if (user === null) {
-        res.status(404).json({ status: 0, error: "User not found" });
+        res.status(404).json({ status: 0, message: "User not found" });
       } else {
         res.status(200).json({ status: 1, data: user });
       }
     });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ status: 0, error: error });
+    res.status(400).json({ status: 0, message: error });
   }
 });
 
@@ -31,26 +31,26 @@ router.post("/create", async (req, res) => {
     if (a1 !== null) {
       res.status(400).json({
         status: 0,
-        error: "User alredy exists please use a different email",
+        message: "User alredy exists please use a different email",
       });
     } else if (a2 !== null) {
       res.status(400).json({
         status: 0,
-        error: "User alredy exists please use a different username",
+        message: "User alredy exists please use a different username",
       });
     } else {
       User.create(req.body, (err, user) => {
         if (err) {
           console.error(err);
-          res.status(400).json({ status: 0, error: err });
+          res.status(400).json({ status: 0, message: err });
         }
         console.log(user);
-        res.status(200).json({ status: 1, data: user });
+        res.status(200).json({ status: 1, message: "user is succesfully created " });
       });
     }
   } catch (error) {
     console.error(error);
-    res.status(400).json({ status: 0, error: error });
+    res.status(400).json({ status: 0, message: error });
   }
 });
 

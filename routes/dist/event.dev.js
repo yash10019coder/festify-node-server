@@ -14,10 +14,10 @@ router.get("/all", function (req, res) {
     if (err) {
       console.log({
         status: 0,
-        error: err
+        message: err
       });
       res.json({
-        error: err,
+        message: err,
         status: 0
       });
     } else {
@@ -41,7 +41,7 @@ router.post("/post", function (req, res) {
 
       res.json({
         status: 0,
-        error: err
+        message: err
       });
     } else {
       console.log("succesfully created the db ".concat(event)); // res.send(`succesfully created the db ${data} \n your body is ${req.body}`)
