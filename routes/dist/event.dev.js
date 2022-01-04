@@ -37,15 +37,13 @@ router.post("/post", function (req, res) {
   console.log(data);
   event.create(data, function (err, event) {
     if (err) {
-      console.log(err); // res.send(`unable to create the ${data} due to the following error ${err}`);
-
+      console.log(err);
       res.json({
         status: 0,
         message: err
       });
     } else {
-      console.log("succesfully created the db ".concat(event)); // res.send(`succesfully created the db ${data} \n your body is ${req.body}`)
-
+      console.log("succesfully created the db ".concat(event));
       res.json({
         data: data,
         status: 1
