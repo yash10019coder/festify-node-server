@@ -22,6 +22,27 @@ router.get("/:name", (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  try {
+    let usernameOrEmail = await req.body.usernameOrEmail;
+    let password = await req.body.password;
+    let user;
+    if (usernameOrEmail.includes("@")) {
+      user = await User.findOne({ userEmail: usernameOrEmail, userPassword: password });
+    } else {
+      user = await User.findOne({ userName: usernameOrEmail, userPassword: password });
+    }
+    if (user === null) {
+      res.status(404).json({ status: 0, message: "User not found" });
+    }
+    else
+    res.status(200).json({ status: 1, message:"User is logged in",token });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ status: 0, message: error });
+  }
+});
+
 router.post("/create", async (req, res) => {
   try {
     let a1, a2;

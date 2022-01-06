@@ -2,15 +2,16 @@ const express = require("express");
 const router = express.Router();
 const event = require("../models/event");
 const bodyparser = require("body-parser");
+const verify = require("./verify_token");
 express().use(bodyparser.json())
 
 router.get("/all", (req, res) => {
     event.find({}, (err, events) => {
         if (err) {
-            console.log({ status: 0, message: err });
-            res.json({ message: err, status: 0 });
+            console.log({status: 0, message: err});
+            res.json({message: err, status: 0});
         } else {
-            res.json({ data: events, status: 1 });
+            res.json({data: events, status: 1});
         }
     });
 });
@@ -27,10 +28,10 @@ router.post("/post", (req, res) => {
     event.create(data, (err, event) => {
         if (err) {
             console.log(err);
-            res.json({ status: 0, message: err });
+            res.json({status: 0, message: err});
         } else {
             console.log(`succesfully created the db ${event}`);
-            res.json({ data: data, status: 1 });
+            res.json({data: data, status: 1});
         }
     });
 });
