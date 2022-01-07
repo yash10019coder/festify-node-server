@@ -75,20 +75,20 @@ router.post("/create", async (req, res) => {
                     if (err) {
                         console.log(err);
                         res.status(400).json({status: 0, message: err});
-                    }
+                    } else console.log("Directory created");
                 });
                 await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
                     if (err) {
                         console.log(err);
                         res.status(400).json({status: 0, message: err});
-                    }
+                    } else console.log("The file was saved!");
                 });
             } else {
                 await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
                     if (err) {
                         console.log(err);
                         res.status(400).json({status: 0, message: err});
-                    }
+                    } else console.log("The file was saved!");
                 });
             }
             req.body.userPhoto = `https://festify-iiitl.herokuapp.com/images/${req.body.userName}.png`;
