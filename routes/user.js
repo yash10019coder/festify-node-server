@@ -70,10 +70,10 @@ router.post("/create", async (req, res) => {
         } else {
             let base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
 
-            if (!fs.existsSync('../images')) {
-                fs.mkdirSync('../images');
+            if (!fs.existsSync('./images')) {
+                fs.mkdirSync('./images');
             } else {
-                fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', function (err) {
+                fs.writeFile(`./images/${req.body.userName}.png`, base64Data, 'base64', function (err) {
                     console.log(err);
                 });
             }
