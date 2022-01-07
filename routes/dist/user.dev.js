@@ -18,7 +18,7 @@ router.get("/:name", verify, function (req, res) {
       userName: req.params.name
     }, function (err, user) {
       if (err) {
-        console.error(err);
+        console.log(err);
         res.status(400).json({
           status: 0,
           message: err
@@ -40,7 +40,7 @@ router.get("/:name", verify, function (req, res) {
       }
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(400).json({
       status: 0,
       message: error
@@ -101,7 +101,7 @@ router.post("/login", function _callee(req, res) {
             user: user
           }, process.env.TOKEN_SECRET, function (err, token) {
             if (err) {
-              console.error(err);
+              console.log(err);
               res.status(400).json({
                 status: 0,
                 message: err
@@ -120,7 +120,7 @@ router.post("/login", function _callee(req, res) {
         case 19:
           _context.prev = 19;
           _context.t0 = _context["catch"](0);
-          console.error(_context.t0);
+          console.log(_context.t0);
           res.status(400).json({
             status: 0,
             message: _context.t0
@@ -164,7 +164,7 @@ router.post("/create", function _callee2(req, res) {
             status: 0,
             message: "User alredy exists please use a different email"
           });
-          _context2.next = 19;
+          _context2.next = 28;
           break;
 
         case 11:
@@ -177,24 +177,50 @@ router.post("/create", function _callee2(req, res) {
             status: 0,
             message: "User alredy exists please use a different username"
           });
-          _context2.next = 19;
+          _context2.next = 28;
           break;
 
         case 15:
           base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
 
-          if (!fs.existsSync('../images')) {
-            fs.mkdirSync('../images');
-          } else {
-            fs.writeFile("".concat(req.body.userName, ".png"), base64Data, 'base64', function (err) {
-              console.log(err);
-            });
+          if (fs.existsSync('../images')) {
+            _context2.next = 23;
+            break;
           }
 
           _context2.next = 19;
+          return regeneratorRuntime.awrap(fs.mkdir('../images', function (err) {
+            if (err) {
+              console.log(err);
+            } else console.log("Directory created");
+          }));
+
+        case 19:
+          _context2.next = 21;
+          return regeneratorRuntime.awrap(fs.writeFile("../images/".concat(req.body.userName, ".png"), base64Data, 'base64', function (err) {
+            if (err) {
+              console.log(err);
+            } else console.log("The file was saved!");
+          }));
+
+        case 21:
+          _context2.next = 25;
+          break;
+
+        case 23:
+          _context2.next = 25;
+          return regeneratorRuntime.awrap(fs.writeFile("../images/".concat(req.body.userName, ".png"), base64Data, 'base64', function (err) {
+            if (err) {
+              console.log(err);
+            } else console.log("The file was saved!");
+          }));
+
+        case 25:
+          req.body.userPhoto = "https://festify-iiitl.herokuapp.com/images/".concat(req.body.userName, ".png");
+          _context2.next = 28;
           return regeneratorRuntime.awrap(User.create(req.body, function (err, user) {
             if (err) {
-              console.error(err);
+              console.log(err);
               res.status(400).json({
                 status: 0,
                 message: err
@@ -208,24 +234,24 @@ router.post("/create", function _callee2(req, res) {
             });
           }));
 
-        case 19:
-          _context2.next = 25;
+        case 28:
+          _context2.next = 34;
           break;
 
-        case 21:
-          _context2.prev = 21;
+        case 30:
+          _context2.prev = 30;
           _context2.t0 = _context2["catch"](0);
-          console.error(_context2.t0);
+          console.log(_context2.t0);
           res.status(400).json({
             status: 0,
             message: _context2.t0
           });
 
-        case 25:
+        case 34:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[0, 21]]);
+  }, null, null, [[0, 30]]);
 });
 module.exports = router;
