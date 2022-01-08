@@ -134,7 +134,7 @@ router.post("/login", function _callee(req, res) {
   }, null, null, [[0, 19]]);
 });
 router.post("/create", function _callee2(req, res) {
-  var a1, a2, base64Data;
+  var a1, a2;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -164,7 +164,7 @@ router.post("/create", function _callee2(req, res) {
             status: 0,
             message: "User alredy exists please use a different email"
           });
-          _context2.next = 28;
+          _context2.next = 18;
           break;
 
         case 11:
@@ -177,47 +177,31 @@ router.post("/create", function _callee2(req, res) {
             status: 0,
             message: "User alredy exists please use a different username"
           });
-          _context2.next = 28;
+          _context2.next = 18;
           break;
 
         case 15:
-          base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
-
-          if (fs.existsSync('../images')) {
-            _context2.next = 23;
-            break;
-          }
-
-          _context2.next = 19;
-          return regeneratorRuntime.awrap(fs.mkdir('../images', function (err) {
-            if (err) {
-              console.log(err);
-            } else console.log("Directory created");
-          }));
-
-        case 19:
-          _context2.next = 21;
-          return regeneratorRuntime.awrap(fs.writeFile("../images/".concat(req.body.userName, ".png"), base64Data, 'base64', function (err) {
-            if (err) {
-              console.log(err);
-            } else console.log("The file was saved!");
-          }));
-
-        case 21:
-          _context2.next = 25;
-          break;
-
-        case 23:
-          _context2.next = 25;
-          return regeneratorRuntime.awrap(fs.writeFile("../images/".concat(req.body.userName, ".png"), base64Data, 'base64', function (err) {
-            if (err) {
-              console.log(err);
-            } else console.log("The file was saved!");
-          }));
-
-        case 25:
+          // let base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
+          // if (!fs.existsSync('../images')) {
+          //     await fs.mkdir('../images', (err) => {
+          //         if (err) {
+          //             console.log(err);
+          //         } else console.log("Directory created");
+          //     });
+          //     await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
+          //         if (err) {
+          //             console.log(err);
+          //         } else console.log("The file was saved!");
+          //     });
+          // } else {
+          //     await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
+          //         if (err) {
+          //             console.log(err);
+          //         } else console.log("The file was saved!");
+          //     });
+          // }
           req.body.userPhoto = "https://festify-iiitl.herokuapp.com/images/".concat(req.body.userName, ".png");
-          _context2.next = 28;
+          _context2.next = 18;
           return regeneratorRuntime.awrap(User.create(req.body, function (err, user) {
             if (err) {
               console.log(err);
@@ -234,12 +218,12 @@ router.post("/create", function _callee2(req, res) {
             });
           }));
 
-        case 28:
-          _context2.next = 34;
+        case 18:
+          _context2.next = 24;
           break;
 
-        case 30:
-          _context2.prev = 30;
+        case 20:
+          _context2.prev = 20;
           _context2.t0 = _context2["catch"](0);
           console.log(_context2.t0);
           res.status(400).json({
@@ -247,11 +231,11 @@ router.post("/create", function _callee2(req, res) {
             message: _context2.t0
           });
 
-        case 34:
+        case 24:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[0, 30]]);
+  }, null, null, [[0, 20]]);
 });
 module.exports = router;

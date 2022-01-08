@@ -68,26 +68,26 @@ router.post("/create", async (req, res) => {
                 message: "User alredy exists please use a different username",
             });
         } else {
-            let base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
+            // let base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
 
-            if (!fs.existsSync('../images')) {
-                await fs.mkdir('../images', (err) => {
-                    if (err) {
-                        console.log(err);
-                    } else console.log("Directory created");
-                });
-                await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
-                    if (err) {
-                        console.log(err);
-                    } else console.log("The file was saved!");
-                });
-            } else {
-                await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
-                    if (err) {
-                        console.log(err);
-                    } else console.log("The file was saved!");
-                });
-            }
+            // if (!fs.existsSync('../images')) {
+            //     await fs.mkdir('../images', (err) => {
+            //         if (err) {
+            //             console.log(err);
+            //         } else console.log("Directory created");
+            //     });
+            //     await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
+            //         if (err) {
+            //             console.log(err);
+            //         } else console.log("The file was saved!");
+            //     });
+            // } else {
+            //     await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
+            //         if (err) {
+            //             console.log(err);
+            //         } else console.log("The file was saved!");
+            //     });
+            // }
             req.body.userPhoto = `https://festify-iiitl.herokuapp.com/images/${req.body.userName}.png`;
             await User.create(req.body, (err, user) => {
                 if (err) {
