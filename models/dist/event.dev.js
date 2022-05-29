@@ -5,27 +5,35 @@ var mongoose = require("mongoose");
 var eventSchema = mongoose.Schema({
   eventName: {
     type: String,
-    required: true
+    required: true,
+  },
+  eventCategory: {
+    type: String,
+    required: true,
   },
   eventDate: {
     type: String,
-    required: true
+    required: true,
   },
-  eventTime: {
+  eventEndDate: {
     type: String,
-    required: true
+    required: true,
   },
-  eventLocation: {
+  eventStartTime: {
     type: String,
-    required: true
+    required: true,
+  },
+  eventEndTime: {
+    type: String,
+    required: true,
   },
   eventDescription: {
     type: String,
-    required: true
+    required: true,
   },
   eventImage: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 module.exports = mongoose.model("Event", eventSchema);
