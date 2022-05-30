@@ -30,7 +30,7 @@ router.get("/all", verify, function (req, res) {
     }
   });
 });
-router.post("/post", verify, function (req, res) {
+router.post("/create", verify, function (req, res) {
   var data = req.body;
   console.log("******************************************\nthe request is\n***************************************************", req);
   console.log(req.ip);

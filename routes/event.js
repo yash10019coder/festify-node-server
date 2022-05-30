@@ -16,7 +16,7 @@ router.get("/all", verify, (req, res) => {
     });
 });
 
-router.post("/post", verify, (req, res) => {
+router.post("/create", verify, (req, res) => {
 
     const data = req.body;
     console.log("******************************************\nthe request is\n***************************************************", req);

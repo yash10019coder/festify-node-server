@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/create", async (req, res) => {
+router.post("/signup", async (req, res) => {
     try {
         let a1, a2;
         a1 = await User.findOne({userEmail: req.body.userEmail});

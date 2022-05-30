@@ -133,7 +133,7 @@ router.post("/login", function _callee(req, res) {
     }
   }, null, null, [[0, 19]]);
 });
-router.post("/create", function _callee2(req, res) {
+router.post("/signup", function _callee2(req, res) {
   var a1, a2;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
