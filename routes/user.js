@@ -16,7 +16,7 @@ router.get("/:name", verify, (req, res) => {
             if (user === null) {
                 res.status(404).json({status: 0, message: "User not found"});
             } else {
-                res.status(200).json({status: 1, data: user});
+                res.status(200).json({status: 1, message: user});
             }
         });
     } catch (error) {

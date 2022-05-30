@@ -9,9 +9,9 @@ router.get("/all", verify, (req, res) => {
     event.find({}, (err, events) => {
         if (err) {
             console.log({status: 0, message: err});
-            res.json({message: err, status: 0});
+            res.json({status: 0, message: err});
         } else {
-            res.json({data: events, status: 1});
+            res.json({status: 1, message:data});
         }
     });
 });
@@ -31,7 +31,7 @@ router.post("/post", verify, (req, res) => {
             res.json({status: 0, message: err});
         } else {
             console.log(`succesfully created the db ${event}`);
-            res.json({data: data, status: 1});
+            res.json({status: 1,message:data});
         }
     });
 });
