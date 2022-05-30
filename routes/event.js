@@ -31,7 +31,7 @@ router.post("/create", (req, res) => {
             res.json({status: 0, message: err});
         } else {
             console.log(`succesfully created the db ${event}`);
-            res.json({status: 1,message:data});
+            res.json({status: 1,message:"DONE!"});
         }
     });
 });
