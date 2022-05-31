@@ -30,8 +30,7 @@ var eventSchema = mongoose.Schema({
     required: true,
   },
   eventImage: {
-    type: String,
-    required: true,
+    type: String
   },
 });
 
