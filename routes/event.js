@@ -11,7 +11,7 @@ router.get("/all", (req, res) => {
             console.log({status: 0, message: err});
             res.json({status: 0, message: err});
         } else {
-            res.json({status: 1, message:data});
+            res.json({status: 1, message:events});
         }
     });
 });
