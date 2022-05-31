@@ -11,7 +11,7 @@ var bodyparser = require("body-parser");
 var verify = require("./verify_token");
 
 express().use(bodyparser.json());
-router.get("/all", verify, function (req, res) {
+router.get("/all", function (req, res) {
   event.find({}, function (err, events) {
     if (err) {
       console.log({
@@ -48,7 +48,7 @@ router.post("/create", function (req, res) {
       console.log("succesfully created the db ".concat(event));
       res.json({
         status: 1,
-        message: data
+        message: "DONE!"
       });
     }
   });

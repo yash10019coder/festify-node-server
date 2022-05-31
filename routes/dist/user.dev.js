@@ -12,7 +12,7 @@ var verify = require("./verify_token");
 
 var fs = require('fs');
 
-router.get("/:name", verify, function (req, res) {
+router.get("/:name", function (req, res) {
   try {
     User.findOne({
       userName: req.params.name

@@ -5,7 +5,7 @@ const bodyparser = require("body-parser");
 const verify = require("./verify_token");
 express().use(bodyparser.json())
 
-router.get("/all", verify, (req, res) => {
+router.get("/all", (req, res) => {
     event.find({}, (err, events) => {
         if (err) {
             console.log({status: 0, message: err});
