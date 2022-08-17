@@ -5,15 +5,23 @@ let eventSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  eventCategory: {
+    type: String,
+    required: true,
+  },
   eventDate: {
     type: String,
     required: true,
   },
-  eventTime: {
+  eventEndDate: {
     type: String,
     required: true,
   },
-  eventLocation: {
+  eventStartTime: {
+    type: String,
+    required: true,
+  },
+  eventEndTime: {
     type: String,
     required: true,
   },
@@ -22,8 +30,7 @@ let eventSchema = mongoose.Schema({
     required: true,
   },
   eventImage: {
-    type: String,
-    required: true,
+    type: String
   },
 });
 

@@ -24,22 +24,22 @@ router.get("/token", verify, (req, res) => {
     }
 });
 
-router.get("/:name", verify, (req, res) => {
+router.get("/:name", (req, res) => {
     try {
         User.findOne({userName: req.params.name}, (err, user) => {
             if (err) {
-                console.error(err);
+                console.log(err);
                 res.status(400).json({status: 0, message: err});
             }
             console.log(user);
             if (user === null) {
                 res.status(404).json({status: 0, message: "User not found"});
             } else {
-                res.status(200).json({status: 1, data: user});
+                res.status(200).json({status: 1, message: user});
             }
         });
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(400).json({status: 0, message: error});
     }
 });
@@ -61,18 +61,18 @@ router.post("/login", async (req, res) => {
         } else
             jwt.sign({user}, process.env.TOKEN_SECRET, (err, token) => {
                 if (err) {
-                    console.error(err);
+                    console.log(err);
                     res.status(400).json({status: 0, message: err});
                 }
                 res.header('auth-token', token).status(200).json({status: 1, message: "User is logged in"});
             });
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(400).json({status: 0, message: error});
     }
 });
 
-router.post("/create", async (req, res) => {
+router.post("/signup", async (req, res) => {
     try {
         let a1, a2;
         a1 = await User.findOne({userEmail: req.body.userEmail});
@@ -91,7 +91,7 @@ router.post("/create", async (req, res) => {
         } else {
             await User.create(req.body, (err, user) => {
                 if (err) {
-                    console.error(err);
+                    console.log(err);
                     res.status(400).json({status: 0, message: err});
                 }
                 console.log(user);
@@ -99,7 +99,7 @@ router.post("/create", async (req, res) => {
             });
         }
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(400).json({status: 0, message: error});
     }
 });

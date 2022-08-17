@@ -12,13 +12,13 @@ var verify = require("./verify_token");
 
 var fs = require('fs');
 
-router.get("/:name", verify, function (req, res) {
+router.get("/:name", function (req, res) {
   try {
     User.findOne({
       userName: req.params.name
     }, function (err, user) {
       if (err) {
-        console.error(err);
+        console.log(err);
         res.status(400).json({
           status: 0,
           message: err
@@ -35,12 +35,12 @@ router.get("/:name", verify, function (req, res) {
       } else {
         res.status(200).json({
           status: 1,
-          data: user
+          message: user
         });
       }
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(400).json({
       status: 0,
       message: error
@@ -101,7 +101,7 @@ router.post("/login", function _callee(req, res) {
             user: user
           }, process.env.TOKEN_SECRET, function (err, token) {
             if (err) {
-              console.error(err);
+              console.log(err);
               res.status(400).json({
                 status: 0,
                 message: err
@@ -120,7 +120,7 @@ router.post("/login", function _callee(req, res) {
         case 19:
           _context.prev = 19;
           _context.t0 = _context["catch"](0);
-          console.error(_context.t0);
+          console.log(_context.t0);
           res.status(400).json({
             status: 0,
             message: _context.t0
@@ -133,8 +133,8 @@ router.post("/login", function _callee(req, res) {
     }
   }, null, null, [[0, 19]]);
 });
-router.post("/create", function _callee2(req, res) {
-  var a1, a2, base64Data;
+router.post("/signup", function _callee2(req, res) {
+  var a1, a2;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -164,7 +164,7 @@ router.post("/create", function _callee2(req, res) {
             status: 0,
             message: "User alredy exists please use a different email"
           });
-          _context2.next = 19;
+          _context2.next = 18;
           break;
 
         case 11:
@@ -177,24 +177,34 @@ router.post("/create", function _callee2(req, res) {
             status: 0,
             message: "User alredy exists please use a different username"
           });
-          _context2.next = 19;
+          _context2.next = 18;
           break;
 
         case 15:
-          base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
-
-          if (!fs.existsSync('../images')) {
-            fs.mkdirSync('../images');
-          } else {
-            fs.writeFile("".concat(req.body.userName, ".png"), base64Data, 'base64', function (err) {
-              console.log(err);
-            });
-          }
-
-          _context2.next = 19;
+          // let base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
+          // if (!fs.existsSync('../images')) {
+          //     await fs.mkdir('../images', (err) => {
+          //         if (err) {
+          //             console.log(err);
+          //         } else console.log("Directory created");
+          //     });
+          //     await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
+          //         if (err) {
+          //             console.log(err);
+          //         } else console.log("The file was saved!");
+          //     });
+          // } else {
+          //     await fs.writeFile(`../images/${req.body.userName}.png`, base64Data, 'base64', (err) => {
+          //         if (err) {
+          //             console.log(err);
+          //         } else console.log("The file was saved!");
+          //     });
+          // }
+          req.body.userPhoto = "https://festify-iiitl.herokuapp.com/images/".concat(req.body.userName, ".png");
+          _context2.next = 18;
           return regeneratorRuntime.awrap(User.create(req.body, function (err, user) {
             if (err) {
-              console.error(err);
+              console.log(err);
               res.status(400).json({
                 status: 0,
                 message: err
@@ -208,24 +218,24 @@ router.post("/create", function _callee2(req, res) {
             });
           }));
 
-        case 19:
-          _context2.next = 25;
+        case 18:
+          _context2.next = 24;
           break;
 
-        case 21:
-          _context2.prev = 21;
+        case 20:
+          _context2.prev = 20;
           _context2.t0 = _context2["catch"](0);
-          console.error(_context2.t0);
+          console.log(_context2.t0);
           res.status(400).json({
             status: 0,
             message: _context2.t0
           });
 
-        case 25:
+        case 24:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[0, 21]]);
+  }, null, null, [[0, 20]]);
 });
 module.exports = router;

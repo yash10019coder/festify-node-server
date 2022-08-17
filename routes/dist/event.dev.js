@@ -8,6 +8,8 @@ var event = require("../models/event");
 
 var bodyparser = require("body-parser");
 
+var verify = require("./verify_token");
+
 express().use(bodyparser.json());
 router.get("/all", function (req, res) {
   event.find({}, function (err, events) {
@@ -17,18 +19,18 @@ router.get("/all", function (req, res) {
         message: err
       });
       res.json({
-        message: err,
-        status: 0
+        status: 0,
+        message: err
       });
     } else {
       res.json({
-        data: events,
-        status: 1
+        status: 1,
+        message: data
       });
     }
   });
 });
-router.post("/post", function (req, res) {
+router.post("/create", function (req, res) {
   var data = req.body;
   console.log("******************************************\nthe request is\n***************************************************", req);
   console.log(req.ip);
@@ -45,8 +47,8 @@ router.post("/post", function (req, res) {
     } else {
       console.log("succesfully created the db ".concat(event));
       res.json({
-        data: data,
-        status: 1
+        status: 1,
+        message: "DONE!"
       });
     }
   });
