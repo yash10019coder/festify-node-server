@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const event = require("./routes/event");
 const user = require("./routes/user");
+const verify = require("./routes/verify");
 const ip = require("ip");
+require("dotenv").config();
 
 
 require("dotenv/config");
@@ -21,7 +23,9 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
 app.use('/event', event);
-app.use('/user', user)
+app.use('/user', user);
+app.use('/verify', verify);
+
 
 app.get("/", (req, res) => {
     console.log(req.url);

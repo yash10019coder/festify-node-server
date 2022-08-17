@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var userSchema = mongoose.Schema({
+let userSchema = mongoose.Schema({
   userName: {
     type: String,
     required: true,
@@ -20,6 +20,10 @@ var userSchema = mongoose.Schema({
   registeredEvents: {
     type: Array(String),
     default: [],
+  },
+  token: {
+    type: Boolean,
+    default: false
   }
 });
 

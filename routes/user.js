@@ -3,7 +3,26 @@ const router = express.Router();
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const verify = require("./verify_token");
-const fs = require('fs');
+
+router.get("/token", verify, (req, res) => {
+    try {
+        User.findOne({userName: req.params.name}, (err, user) => {
+            if (err) {
+                console.error(err);
+                res.status(400).json({status: 0, message: err});
+            }
+            console.log(user);
+            if (user === null) {
+                res.status(404).json({status: 0, message: "User not found"});
+            } else {
+                res.status(200).json({status: 1, data: user});
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({status: 0, message: error});
+    }
+});
 
 router.get("/:name", verify, (req, res) => {
     try {
@@ -24,6 +43,8 @@ router.get("/:name", verify, (req, res) => {
         res.status(400).json({status: 0, message: error});
     }
 });
+
+
 
 router.post("/login", async (req, res) => {
     try {
@@ -68,16 +89,6 @@ router.post("/create", async (req, res) => {
                 message: "User alredy exists please use a different username",
             });
         } else {
-            let base64Data = req.body.userPhoto.replace(/^data:image\/png;base64,/, "");
-
-            if (!fs.existsSync('./images')) {
-                fs.mkdirSync('./images');
-            } else {
-                fs.writeFile(`./images/${req.body.userName}.png`, base64Data, 'base64', function (err) {
-                    console.log(err);
-                });
-            }
-            req.body.userPhoto = `https://festify-iiitl.herokuapp.com/images/${req.body.userName}.png`;
             await User.create(req.body, (err, user) => {
                 if (err) {
                     console.error(err);
