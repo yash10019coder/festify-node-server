@@ -4,7 +4,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const verify = require("./verify_token");
 
-router.get("/token", verify, (req, res) => {
+router.get("/token", (req, res) => {
     try {
         User.findOne({userName: req.params.name}, (err, user) => {
             if (err) {
