@@ -104,4 +104,22 @@ router.post("/signup", async (req, res) => {
     }
 });
 
+
+router.post("/register",(req,res)=>{
+try{
+
+    User.find({userName:req.body.userName},(err,user)=>{
+      user.registeredEvents.push(req.body.eventName)
+      user.save(()=>{
+        console.log("Updated");
+      });
+    });
+    res.status(200).json({status: 1,message:"Added"})
+
+}catch(error) {
+    console.log(error);
+    res.status(400).json({status: 0, message: error});
+}
+});
+
 module.exports = router;
