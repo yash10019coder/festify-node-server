@@ -137,4 +137,39 @@ try{
 }
 });
 
+router.post("/delete",(req,res)=>{
+    try{
+        const e =req.body.eventId
+    User.findOne({userName:req.body.userName},(err,user)=>{
+        console.log(req.body)
+        if(err){
+            console.log(err)
+            res.status(400).json({status:1,message:err});
+        }
+        else{
+            let n=user.registeredEvents.length
+            for(let i=0;i<n;i++){
+                if(user.registeredEvents[i]==e){
+                    user.registeredEvents.splice(i);
+                }
+
+            }      
+      user.save((err)=>{
+        if(err){
+               console.log(err);
+               res.status(400).json({status:1,message:err});
+        }
+        else{
+            console.log("Successfully Updated");
+            res.status(200).json({status: 1,message:"Deleted"})
+            }
+          });
+        }
+        });
+    }catch(error){
+    console.log(error);
+    res.status(400).json({status: 0, message: error});
+    }
+})
+
 module.exports = router;
