@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 let userSchema = mongoose.Schema({
   userName: {
     type: String,
+    unique: true,
     required: true,
   },
   userPassword: {
@@ -19,7 +20,7 @@ let userSchema = mongoose.Schema({
   },
   registeredEvents: {
     type: Array(String),
-    default: [],
+   // default: [],
   },
   token: {
     type: Boolean,

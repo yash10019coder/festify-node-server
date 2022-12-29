@@ -104,4 +104,37 @@ router.post("/signup", async (req, res) => {
     }
 });
 
+
+router.post("/register", (req,res)=>{
+try{
+    const e =req.body.eventName
+    User.findOne({userName:req.body.userName},(err,user)=>{
+        console.log(req.body)
+        if(err){
+            console.log(err)
+            res.status(400).json({status:1,message:err});
+        }
+        else{
+      user.registeredEvents.push(e);
+      
+      user.save((err)=>{
+        if(err){
+               console.log(err);
+               res.status(400).json({status:1,message:err});
+        }
+        else{
+        console.log("Successfully Saved");
+        res.status(200).json({status: 1,message:"Added"})
+        }
+      });
+    }
+    });
+    
+
+}catch(error) {
+    console.log(error);
+    res.status(400).json({status: 0, message: error});
+}
+});
+
 module.exports = router;

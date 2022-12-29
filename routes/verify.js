@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dataModel = require("../models/data");
 
-router.post("/", async (req, res) => {
+router.post("/verify", async (req, res) => {
         const person=new dataModel({
             userName:req.body.userName,
             email:req.body.email,
