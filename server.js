@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const event = require("./routes/event");
 const user = require("./routes/user");
-const verify = require("./routes/verify");
+//const verify = require("./routes/verify");
 const ip = require("ip");
 require("dotenv").config();
 
