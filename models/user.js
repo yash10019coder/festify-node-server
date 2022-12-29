@@ -19,7 +19,7 @@ let userSchema = mongoose.Schema({
   },
   registeredEvents: {
     type: Array(String),
-    default: [],
+   // default: [],
   },
   token: {
     type: Boolean,
