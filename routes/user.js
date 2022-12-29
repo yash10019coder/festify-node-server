@@ -107,13 +107,14 @@ router.post("/signup", async (req, res) => {
 
 router.post("/register",(req,res)=>{
 try{
+    const e =req.body.eventName
     User.find({userName:req.body.userName},(err,user)=>{
         console.log(req.body)
         if(err){
             console.log(err)
         }
         else{
-      user.registeredEvents.push(req.body.eventName)
+      user.registeredEvents.push(e);
       
       user.save(()=>{
         console.log("Updated");
