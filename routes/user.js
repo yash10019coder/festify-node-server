@@ -107,7 +107,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/register", (req,res)=>{
 try{
-    const e =req.body.eventName
+    const e =req.body.eventId
     User.findOne({userName:req.body.userName},(err,user)=>{
         console.log(req.body)
         if(err){
