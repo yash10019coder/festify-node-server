@@ -109,11 +109,16 @@ router.post("/register",(req,res)=>{
 try{
     User.find({userName:req.body.userName},(err,user)=>{
         console.log(req.body)
+        if(err){
+            console.log(err)
+        }
+        else{
       user.registeredEvents.push(req.body.eventName)
       
       user.save(()=>{
         console.log("Updated");
       });
+    }
     });
     res.status(200).json({status: 1,message:"Added"})
 
